@@ -12,8 +12,8 @@ Each script is very simple, providing a start, stop and status function. The out
 
 The following scripts are supported to date. Each has its own information page which is linked below:
 
- - kismet_ctl (https://github.com/WLAN-Pi/wlanpi-nanohat-oled-scripts/doc/kismet_ctl.md
- - bettercap_ctl (https://github.com/WLAN-Pi/wlanpi-nanohat-oled-scripts/doc/bettercap_ctl.md 
+ - kismet_ctl (https://github.com/WLAN-Pi/wlanpi-nanohat-oled-scripts/blob/master/doc/kismet_ctl.md)
+ - bettercap_ctl (https://github.com/WLAN-Pi/wlanpi-nanohat-oled-scripts/blob/master/doc/bettercap_ctl.md)
  
 Note that a minimum version of [wlanpi-nanohat-oled.py](https://github.com/WLAN-Pi/wlanpi-nanohat-oled) v0.20 or later is required to use these controls
 
