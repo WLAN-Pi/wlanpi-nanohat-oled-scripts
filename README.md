@@ -14,6 +14,7 @@ The following scripts are supported to date. Each has its own information page w
 
  - kismet_ctl (https://github.com/WLAN-Pi/wlanpi-nanohat-oled-scripts/blob/master/doc/kismet_ctl.md)
  - bettercap_ctl (https://github.com/WLAN-Pi/wlanpi-nanohat-oled-scripts/blob/master/doc/bettercap_ctl.md)
+ - profile_ctl (https://github.com/WLAN-Pi/wlanpi-nanohat-oled-scripts/blob/master/doc/profiler_ctl.md)
  
 Note that a minimum version of [wlanpi-nanohat-oled.py](https://github.com/WLAN-Pi/wlanpi-nanohat-oled) v0.20 or later is required to use these controls
 
@@ -26,7 +27,7 @@ Log in to the WLANPi as the "wlanpi" user. Copy the archive file into the /home/
 ```
  # Note this operation is done as the WLANPi user
  cd /home/wlanpi
- tar xvfz wlanpi-nanohat-oled-scripts-v0.01.tar.gz
+ tar xvfz wlanpi-nanohat-oled-scripts-v0.02.tar.gz
 ```
  
-Installation is now complete. The WLANPi front panel menu system (ver 0.20 or later) will now be able to check the status, start or stop each of the processes controller by the scripts. (See the options available under the front panel menu option Home -> 3.Actions )
+Installation is now complete. The WLANPi front panel menu system (ver 0.21 or later) will now be able to check the status, start or stop each of the processes controller by the scripts. (See the options available under the front panel menu option Home -> 3.Actions )
