@@ -1,6 +1,6 @@
 #! /bin/bash
 #
-# kismet_switcher - script to switch kismet on/off
+# kismet_ctl - script to switch kismet on/off
 #                  (usually called from the WLANPi menu system)    
 #
 # Written by Nigel Bowden <wifinigel@gmail.com>.
@@ -8,11 +8,12 @@
 # History:
 #
 # v0.01 - 31st July 2019 - initial version
-#
+# v0.02 - 1st Aug 2019   - fixed path issue in version info
 
 set -e
 
-NAME=kismet_switcher
+NAME=kismet_ctl
+HOME_DIR=/home/wlanpi/nanohat-oled-scripts
 DESC="Script to switch kismet on/off"
 VERSION=0.01
 
@@ -78,13 +79,23 @@ status () {
   fi
 }
 
+is_running () {
+    #Binary 0/1 to indicate if process running
+    if ! [ -z `pidof kismet` ]; then
+        return 1
+    else
+        return 0
+    fi
+
+}
+
 ###############################################################################
 #
 # Return script version:
 #
 ###############################################################################
 version () {
-    N=/etc/wlanpi-kismet/$NAME
+    N=$HOME_DIR/$NAME
         echo "Version: $N $VERSION" >&2
         exit 1
 
@@ -100,11 +111,14 @@ case "$1" in
   status)
         status
         ;;
+  is_running)
+        is_running
+        ;;
   version)
         version;;
   *)
-        N=/etc/wlanpi-kismet/$NAME
-        echo "Usage: $N {start|stop|status|version}" >&2
+        N=$HOME_DIR/$NAME
+        echo "Usage: $N {start|stop|status|is_running|version}" >&2
         exit 1
         ;;
 esac

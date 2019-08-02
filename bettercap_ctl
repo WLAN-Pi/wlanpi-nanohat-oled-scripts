@@ -1,6 +1,6 @@
 #! /bin/bash
 #
-# bettercap_switcher - script to switch bettercap on/off
+# bettercap_ctl - script to switch bettercap on/off
 #                  (usually called from the WLANPi menu system)    
 #
 # Written by Nigel Bowden <wifinigel@gmail.com>.
@@ -8,11 +8,12 @@
 # History:
 #
 # v0.01 - 31st July 2019 - initial version
-#
+# v0.02 - 1st Aug 2019   - fixed path issue in version info
 
 set -e
 
-NAME=bettercap_switcher
+NAME=bettercap_ctl
+HOME_DIR=/home/wlanpi/nanohat-oled-scripts
 DESC="Script to switch bettercap on/off"
 VERSION=0.01
 
@@ -36,7 +37,6 @@ bettercap_start () {
   # Launch Bettercap as background process (as the wlanpi user)
   # (Output sent to /dev/null so that interactive process returns and
   # doesn't hang calling script)
-  # sudo bettercap -caplet https-ui
   su -c 'bettercap -silent -caplet https-ui > /dev/null 2>&1 &'
     
   # Signal that bettercap active
@@ -79,13 +79,23 @@ status () {
   fi
 }
 
+is_running () {
+    #Binary 0/1 to indicate if process running
+    if ! [ -z `pidof bettercap` ]; then
+        return 1
+    else
+        return 0
+    fi
+
+}
+
 ###############################################################################
 #
 # Return script version:
 #
 ###############################################################################
 version () {
-    N=/etc/wlanpi-bettercap/$NAME
+    N=$HOME_DIR/$NAME
         echo "Version: $N $VERSION" >&2
         exit 1
 
@@ -101,11 +111,14 @@ case "$1" in
   status)
         status
         ;;
+  is_running)
+        is_running
+        ;;
   version)
         version;;
   *)
-        N=/etc/wlanpi-bettercap/$NAME
-        echo "Usage: $N {start|stop|status|version}" >&2
+        N=HOME_DIR/$NAME
+        echo "Usage: $N {start|stop|status|is_running|version}" >&2
         exit 1
         ;;
 esac
